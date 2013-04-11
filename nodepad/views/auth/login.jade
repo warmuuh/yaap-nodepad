@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+	.page
+		h2 Log In
+		p
+			a.button(href='/users/new') Create an account &rarr;
+		form.users#login(method='post', action='/auth/login')
+			label Username:
+				input(name='username', placeholder='Username')
+			label Password:
+				input(name='password', type="password")
+			input(name='redirect', value=redirect,type="hidden")
+			div
+				input(type='submit', value='Log In')
+		- if (failed)
+			p|Login failed

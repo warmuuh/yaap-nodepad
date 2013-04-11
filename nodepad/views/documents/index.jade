@@ -1,15 +1,32 @@
 extends ../layout
 
 block content
-	h1|Your Documents:
-	p
-		a(class='button', href='/documents/new') 
-			|+ New Document
-	ul
-		- for (var d in documents)
+	div(class='outline-view', id='left')
+		div(id='DocumentTitles')
+			ul(id='document-list')
+				- for (var d in documents)
+					li
+						a(data-id="#{documents[d]._id}", href='/documents/' + documents[d]._id)
+							=documents[d].title
+
+		ul(class='toolbar')
 			li
-				a(class='button', href='/documents/'+documents[d]._id+'/edit')
-					| Edit
-				a(class='button destroy', href='#', data-ref='/documents/'+documents[d]._id)
-					| Delete
-				=documents[d].title
+				a#add-document(href='#')
+					+
+			li
+				a#remove-document(href='#')
+					-
+
+	div(class='content-divider')
+
+	div(class='content')
+		div(id='editor-container')
+			textarea(name='d[data]', id='editor')
+				=d.data || ''
+
+	ul(id='controls',class='toolbar')
+		li
+			a(href='#', id='save-button') Save
+
+
+	

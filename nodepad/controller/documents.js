@@ -32,11 +32,11 @@ Controller.prototype = {
 			_return(docs);
 		});
 	},
-	createNewDocument: function(/*@Callback*/_return, /*@Body*/newDoc) /*@POST("/")*/ {
+	createNewDocument: function(/*@Callback*/_return, /*@Body*/newDoc) /*@POST("/") @JSON*/ {
 		var persDoc = new this.Document(newDoc);
 		persDoc.save(function (err, d){
 			if (err) console.error(err);
-			_return("redirect:documents/");
+			_return(d);
 		});
 	},
 	deleteDocument: function(/*@Callback*/_return, /*@Param*/id) /*@DELETE("/:id") @JSON*/ {
@@ -45,10 +45,12 @@ Controller.prototype = {
 			_return(null);
 		});
 	},
-	updateDocument:  function(/*@Callback*/_return, /*@Param*/id, /*@Body*/newDoc) /*@PUT("/:id")*/ {
+	updateDocument:  function(/*@Callback*/_return, /*@Param*/id, /*@Body*/newDoc) /*@PUT("/:id") @JSON*/ {
+
 		this.Document.findByIdAndUpdate(id, newDoc, function(err, d){
 			if (err) console.error(err);
-			_return("redirect:documents/");
+			//_return("redirect:documents/");
+			_return(d);
 		});
 	}
 

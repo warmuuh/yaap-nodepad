@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+	h1|New User
+	form(method='post', action='/users/')
+		div
+			label Name:
+				input(name='user[name]', placeholder='name')
+		div
+			label Password:
+				input(name='user[password]', type="password")
+		div
+			label EMail:
+				input(name='user[email]', placeholder='mail')
+
+		input(type='submit', value='Register')
+//	- if (failed)
+//		p|Registration failed

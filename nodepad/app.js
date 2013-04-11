@@ -22,8 +22,11 @@ wire({
 	User: {create:{module: './model/user', args: [{$ref: 'db'}]}},
 	
 	//express and routes
+	authentication_strategy :  {create: './controller/authStrategy'},
 	app: {module: './controller/app'},
 	documentHandler: {create: './controller/documents'},
+	dashboardHandler: {create: './controller/dashboard'},
+	userHandler: {create: './controller/users'},
 	
 	plugins: [
 		{module: 'yaap/wire'},
